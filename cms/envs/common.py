@@ -688,6 +688,7 @@ ADVANCED_COMPONENT_TYPES = [
     'combinedopenended',
     'peergrading',
     'notes',
+    'edx_sga'
 ]
 
 # Specify xblocks that should be treated as advanced problems. Each entry is a tuple

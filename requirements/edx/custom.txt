@@ -1,0 +1,2 @@
+-e git+https://github.com/eduNEXT/edx-sga.git@release#egg=edx-sga
+
