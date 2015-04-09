@@ -23,5 +23,5 @@ install:
  # - pip install -r requirements/edx/pre.txt
  # - pip install -r requirements/edx/base.txt
 script:
-  - paver test
+  - paver test_system -s lms
 
