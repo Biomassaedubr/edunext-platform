@@ -28,5 +28,5 @@ install:
 script:
   # - paver test_system -s lms
   - ./info.sh
-  - paver -h
+  - paver travis
 
