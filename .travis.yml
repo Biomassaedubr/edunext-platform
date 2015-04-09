@@ -1,5 +1,8 @@
 # Travis CI configuration file for running tests
 language: python
+python:
+  - "2.7.4"
+
 branches:
   only:
     - laq/travisTest
@@ -8,8 +11,6 @@ services:
 
 notifications:
   email: false
-python:
-  - "2.7"
 before_install: # Installing scipy deps: http://stackoverflow.com/a/14541175
  - sudo apt-get update
  - sudo pip install --upgrade pip
