@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/eduNEXT/edunext-platform.svg?branch=laq%2FtravisTest)](https://travis-ci.org/eduNEXT/edunext-platform)
+
 This is the main edX platform which consists of LMS and Studio.
 
 See [code.edx.org](http://code.edx.org/) for other parts of the edX code base.
