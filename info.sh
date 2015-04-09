@@ -8,8 +8,8 @@
 # echo "../../.."
 # ls -al ../../../
 python --version
-cat /home/travis/virtualenv/python2.7_with_system_site_packages/local/lib/python2.7/site-packages/paver/deps/six.py
-cat /home/travis/virtualenv/python2.7_with_system_site_packages/local/lib/python2.7/site-packages/six.py
+# cat /home/travis/virtualenv/python2.7_with_system_site_packages/local/lib/python2.7/site-packages/paver/deps/six.py
+# cat /home/travis/virtualenv/python2.7_with_system_site_packages/local/lib/python2.7/site-packages/six.py
 # pip list
 # env
 
