@@ -13,7 +13,7 @@ python --version
 pip list
 # env
 
-export NO_PREREQ_INSTALL="false"
+export NO_PREREQ_INSTALL="true"
 echo $NO_PREREQ_INSTALL
 echo "importing"
 # echo "import urllib2" | python 
