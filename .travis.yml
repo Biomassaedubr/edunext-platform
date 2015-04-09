@@ -24,7 +24,9 @@ install:
   # - pip install Paver==1.2.1
  - pip install -r requirements/edx/paver.txt
  - pip install -e .
- 
+ - pip install setuptools==9.1
+ - pip install -U nltk
+ - pip list
  - pip install -r requirements/edx/github.txt
  # - echo "{}" > /home/travis/build/lms.env.json
  # - pip install -r requirements/edx/pre.txt
