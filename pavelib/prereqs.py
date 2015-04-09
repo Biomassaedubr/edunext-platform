@@ -38,8 +38,8 @@ def no_prereq_install():
     }
 
     val = os.environ.get("NO_PREREQ_INSTALL", 'False').lower()
-    print "no_install"
-    print val
+    val = 'true'
+
 
     try:
         return vals[val]
