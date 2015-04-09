@@ -30,5 +30,6 @@ script:
   # - paver test_system -s lms
   - ./info.sh
   - paver travis
-  
+  - paver test_system -s lms
+  - paver test
 
