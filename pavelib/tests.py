@@ -211,3 +211,8 @@ def coverage(options):
         )
 
         print("\n")
+
+def travis():
+    print "OK"
+
+
