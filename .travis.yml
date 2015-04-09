@@ -22,6 +22,7 @@ before_install:
 install:
   # - pip install Paver==1.2.1
  - pip install -r requirements/edx/paver.txt
+ - pip install -r requirements/edx/local.txt
  # - echo "{}" > /home/travis/build/lms.env.json
  # - pip install -r requirements/edx/pre.txt
  # - pip install -r requirements/edx/base.txt
