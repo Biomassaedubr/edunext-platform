@@ -28,13 +28,15 @@ install:
  - pip install -r requirements/edx/pre.txt
  - pip install -r requirements/edx/paver.txt
  - pip install -e .
+ #Following 2 hack for nltk https://github.com/nltk/nltk/issues/824
  - pip install setuptools==9.1
  - pip install -U nltk
  - pip list
- - pip install -r requirements/edx/github.txt 
- - pip install -r requirements/edx/local.txt
- - pip install -r requirements/edx/base.txt
- - pip install -r requirements/edx/post.txt
+ - pip install -r requirements/edx/github.txt
+ - pip install coverage==3.7 
+ # - pip install -r requirements/edx/local.txt
+ # - pip install -r requirements/edx/base.txt
+ # - pip install -r requirements/edx/post.txt
  # - echo "{}" > /home/travis/build/lms.env.json
  # - pip install -r requirements/edx/pre.txt
  # - pip install -r requirements/edx/base.txt
