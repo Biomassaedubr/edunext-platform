@@ -11,4 +11,6 @@ import os
 # take precedence, leading to some very strange results.
 # sys.path.insert(0, os.path.dirname(__file__))
 
-from pavelib import *
+from pavelib import tests
+from pavelib import prereqs
+#assets, servers, docs, prereqs, quality, tests, js_test, i18n, bok_choy, acceptance_test
