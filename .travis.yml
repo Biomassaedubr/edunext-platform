@@ -2,8 +2,8 @@
 language: python
 python:
   - "2.7"
-virtualenv:
-  system_site_packages: true
+# virtualenv:
+  # system_site_packages: true
 
 branches:
   only:
@@ -32,5 +32,5 @@ script:
   - ./info.sh
   - paver travis
   - paver test_system -s lms
-  - paver test
+  # - paver test
 
