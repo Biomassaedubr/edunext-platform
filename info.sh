@@ -1,6 +1,12 @@
 !#/bin/bash
 ls
-ls ../
+pwd
+echo ".."
+ls -al ../
+echo "../.."
+ls -al ../../
+echo "../../.."
+ls -al ../../../
 python --version
 pip list
 env
