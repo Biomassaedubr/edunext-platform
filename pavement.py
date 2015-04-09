@@ -11,4 +11,4 @@ import os
 # take precedence, leading to some very strange results.
 sys.path.insert(0, os.path.dirname(__file__))
 
-from pavelib import *
+#from pavelib import *
