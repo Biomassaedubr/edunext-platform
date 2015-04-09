@@ -25,6 +25,7 @@ install:
  - ./info.sh
   # - pip install Paver==1.2.1
  - pip install -r requirements/edx/pre.txt
+ - pip install scipy
  - pip install -r requirements/edx/paver.txt
  - pip install -e .
  - pip install setuptools==9.1
