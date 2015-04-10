@@ -35,7 +35,8 @@ install:
  - pip install -r requirements/edx/github.txt
  - pip install coverage==3.7 
  - pip install -r requirements/edx/local.txt
- # - pip install -r requirements/edx/base.txt
+ - pip install distribute==0.6.49
+ - pip install -r requirements/edx/base.txt
  # - pip install -r requirements/edx/post.txt
  # - echo "{}" > /home/travis/build/lms.env.json
  # - pip install -r requirements/edx/pre.txt
