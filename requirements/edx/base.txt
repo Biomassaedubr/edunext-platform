@@ -75,7 +75,7 @@ PyYAML==3.10
 requests==2.3.0
 requests-oauthlib==0.4.1
 rfc6266==0.0.4
-#scipy==0.14.0
+#scipy==0.14.0 #this took to long to install, to use it we may need something like: http://stackoverflow.com/questions/26082444/how-to-work-around-travis-cis-4mb-output-limit/26082445#26082445
 Shapely==1.2.16
 singledispatch==3.4.0.2
 sorl-thumbnail==11.12
