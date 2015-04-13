@@ -15,7 +15,7 @@ notifications:
   email: false
 before_install: 
   - pip list
-  - sudo apt-get update -q
+  - sudo apt-get update -qq
  # - sudo apt-get install -y python-virtualenv python-imaging python-lxml python-pyproj python-shapely python-nose python-httplib2 python-httplib2 python-gdbm python-tk
  # - pip install --upgrade pip
  # - sudo pip install --upgrade virtualenv
@@ -26,17 +26,17 @@ before_install:
 install:
  - ./info.sh
   # - pip install Paver==1.2.1
- - pip install -r requirements/edx/pre.txt
- - pip install -r requirements/edx/paver.txt
- - pip install -e .
+ - pip install -q -r requirements/edx/pre.txt
+ - pip install -q -r requirements/edx/paver.txt
+ - pip install -q -e .
  #Following 2 hack for nltk https://github.com/nltk/nltk/issues/824
  - pip install setuptools==9.1
  - pip install -U nltk
- - pip list
+ # - pip list
  - pip install -r requirements/edx/github.txt
  - pip install coverage==3.7 
  # - pip install PyContracts==1.6.5
- - pip install -r requirements/edx/local.txt
+ - pip install -q -r requirements/edx/local.txt
  - pip install -r requirements/edx/base.txt
  # - pip install -r requirements/edx/post.txt
  - echo "{}" > /home/travis/build/lms.env.json
