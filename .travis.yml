@@ -11,6 +11,11 @@ branches:
 services:
   - mongodb
 
+
+env:
+  - TEST_SYSTEM=lms
+  - TEST_SYSTEM=cms
+
 notifications:
   email: false
 before_install: 
@@ -20,7 +25,6 @@ before_install:
  # - pip install --upgrade pip
  # - sudo pip install --upgrade virtualenv
  # - sudo apt-get install -y build-essential software-properties-common python-software-properties libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev
-  # - sudo apt-get install -y python-numpy=1.6.2
   - sudo apt-get install -q -y gfortran libblas-dev liblapack-dev
   - sudo apt-get install -q python-scipy
 install:
@@ -46,6 +50,6 @@ script:
   # - paver test_system -s lms
   #- ./info.sh
   #- paver travis
-  - paver test_system -s lms --fasttest
+  - paver test_system -s $TEST_SYSTEM --fasttest
   # - paver test
 
