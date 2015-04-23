@@ -17,9 +17,9 @@ env:
   global:
     - NO_PREREQ_INSTALL=true
   matrix:
-    - TEST=./info.sh
-    - TEST=paver test_system -s cms --fasttest
-    - TEST=paver test_system -s lms --fasttest
+    #- TEST=./info.sh #no cache until we use no sudo
+    - TEST="paver test_system -s cms --fasttest"
+    - TEST="paver test_system -s lms --fasttest"
 
 notifications:
   email: false
