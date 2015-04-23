@@ -1,5 +1,6 @@
 # Travis CI configuration file for running tests
 language: python
+cache: pip
 python:
   - "2.7"
 virtualenv:
