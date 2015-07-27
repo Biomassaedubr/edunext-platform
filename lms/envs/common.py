@@ -1468,7 +1468,7 @@ YOUTUBE = {
     'API': 'www.youtube.com/iframe_api',
 
     # URL to test YouTube availability
-    'TEST_URL': 'gdata.youtube.com/feeds/api/videos/',
+    'TEST_URL': 'eol.gdata.youtube.com/feeds/api/videos/',
 
     # Current youtube api for requesting transcripts.
     # For example: http://video.google.com/timedtext?lang=en&v=j_jEn79vS3g.

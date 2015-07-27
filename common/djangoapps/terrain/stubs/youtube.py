@@ -119,7 +119,7 @@ class StubYouTubeHandler(StubHttpRequestHandler):
         callback = self.get_params['callback']
         youtube_metadata = json.loads(
             requests.get(
-                "http://gdata.youtube.com/feeds/api/videos/{id}?v=2&alt=jsonc".format(id=youtube_id)
+                "http://eol.gdata.youtube.com/feeds/api/videos/{id}?v=2&alt=jsonc".format(id=youtube_id)
             ).text
         )
         data = OrderedDict({
