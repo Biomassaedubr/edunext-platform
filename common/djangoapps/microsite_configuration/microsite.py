@@ -85,10 +85,7 @@ def get_template_path(relative_path, leading_slash=False):
         search_path = os.path.join(microsite_template_path, relative_path)
 
         if os.path.isfile(search_path):
-            path = '/{0}/templates/{1}'.format(
-                template_dir,
-                relative_path
-            )
+            path = os.path.join(template_dir, 'templates', relative_path)
             return path
 
     return '/' + relative_path if leading_slash else relative_path
