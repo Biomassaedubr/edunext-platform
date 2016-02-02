@@ -1,3 +1,6 @@
 
 #xBlocks
+-e git+https://github.com/edx-solutions/xblock-drag-and-drop-v2@v2.0.0#egg=drag-and-drop-v2
+
+
 #sga was here but is now upstream, I leave this file so new custom xblocks could go here
