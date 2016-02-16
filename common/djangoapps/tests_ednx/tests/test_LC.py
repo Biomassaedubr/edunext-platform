@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 
-class MicrositeBackendInterfaceTestCase(TestCase):
+class MicrositeLangSelectionTestCase(TestCase):
     """
     This class is intended to test the language selection for a microsite
     """
