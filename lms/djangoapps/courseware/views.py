@@ -150,6 +150,32 @@ def courses(request):
     )
 
 
+def is_org_allowed(course_id):
+
+    # As seen in the dashboard
+    org_to_include = microsite.get_value('course_org_filter')
+
+    # Make any call to this function compatible
+    if org_to_include and isinstance(org_to_include, basestring):
+        org_to_include = set([org_to_include])
+
+    # Let's filter out any courses in an "org" that has been declared to be
+    # in a Microsite
+    orgs_to_exclude = []
+    if not org_to_include:
+        orgs_to_exclude = microsite.get_all_orgs()
+
+    if org_to_include and course_id.org not in org_to_include:
+        raise Http404
+
+    # Conversely, if we are not in a Microsite, then filter out any enrollments
+    # with courses attributed (by ORG) to Microsites.
+    elif course_id.org in orgs_to_exclude:
+        raise Http404
+
+    return True
+
+
 def render_accordion(user, request, course, chapter, section, field_data_cache):
     """
     Draws navigation bar. Takes current position in accordion as
@@ -162,6 +188,7 @@ def render_accordion(user, request, course, chapter, section, field_data_cache):
     Returns the html string
     """
     # grab the table of contents
+    is_org_allowed(course.id)
     toc = toc_for_course(user, request, course, chapter, section, field_data_cache)
 
     context = dict([
@@ -1364,6 +1391,8 @@ def render_xblock(request, usage_key_string, check_if_enrolled=True):
     usage_key = UsageKey.from_string(usage_key_string)
     usage_key = usage_key.replace(course_key=modulestore().fill_in_run(usage_key.course_key))
     course_key = usage_key.course_key
+
+    is_org_allowed(course_key)
 
     requested_view = request.GET.get('view', 'student_view')
     if requested_view != 'student_view':

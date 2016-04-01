@@ -29,7 +29,7 @@ from .. import errors
 from ..utils import mobile_view, mobile_course_access
 
 
-def is_org_allowed(course_overview):
+def is_org_allowed(course_id):
 
     # As seen in the dashboard
     org_to_include = microsite.get_value('course_org_filter')
@@ -44,12 +44,12 @@ def is_org_allowed(course_overview):
     if not org_to_include:
         orgs_to_exclude = microsite.get_all_orgs()
 
-    if org_to_include and course_overview.location.org not in org_to_include:
+    if org_to_include and course_id.org not in org_to_include:
         return False
 
     # Conversely, if we are not in a Microsite, then filter out any enrollments
     # with courses attributed (by ORG) to Microsites.
-    elif course_overview.location.org in orgs_to_exclude:
+    elif course_id.org in orgs_to_exclude:
         return False
 
     return True
@@ -306,7 +306,7 @@ class UserCourseEnrollmentsList(generics.ListAPIView):
             enrollment for enrollment in enrollments
             if enrollment.course_overview and
             is_mobile_available_for_user(self.request.user, enrollment.course_overview) and
-            is_org_allowed(enrollment.course_overview)
+            is_org_allowed(enrollment.course_overview.location)
         ]
 
 

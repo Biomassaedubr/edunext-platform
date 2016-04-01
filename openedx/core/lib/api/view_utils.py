@@ -18,6 +18,7 @@ from lms.djangoapps.courseware.courses import get_course_with_access
 from lms.djangoapps.courseware.courseware_access_exception import CoursewareAccessException
 from opaque_keys.edx.keys import CourseKey
 from xmodule.modulestore.django import modulestore
+from microsite_configuration import microsite
 
 from openedx.core.lib.api.authentication import (
     SessionAuthenticationAllowInactiveUser,
@@ -86,6 +87,32 @@ class ExpandableFieldViewMixin(object):
         return result
 
 
+def is_org_allowed(course_id):
+
+    # As seen in the dashboard
+    org_to_include = microsite.get_value('course_org_filter')
+
+    # Make any call to this function compatible
+    if org_to_include and isinstance(org_to_include, basestring):
+        org_to_include = set([org_to_include])
+
+    # Let's filter out any courses in an "org" that has been declared to be
+    # in a Microsite
+    orgs_to_exclude = []
+    if not org_to_include:
+        orgs_to_exclude = microsite.get_all_orgs()
+
+    if org_to_include and course_id.org not in org_to_include:
+        return False
+
+    # Conversely, if we are not in a Microsite, then filter out any enrollments
+    # with courses attributed (by ORG) to Microsites.
+    elif course_id.org in orgs_to_exclude:
+        return False
+
+    return True
+
+
 def view_course_access(depth=0, access_action='load', check_for_milestones=False):
     """
     Method decorator for an API endpoint that verifies the user has access to the course.
@@ -100,6 +127,10 @@ def view_course_access(depth=0, access_action='load', check_for_milestones=False
             Raises 404 if access to course is disallowed.
             """
             course_id = CourseKey.from_string(kwargs.pop('course_id'))
+
+            if not is_org_allowed(course_id):
+                return response.Response(status=status.HTTP_403_FORBIDDEN)
+
             with modulestore().bulk_operations(course_id):
                 try:
                     course = get_course_with_access(
