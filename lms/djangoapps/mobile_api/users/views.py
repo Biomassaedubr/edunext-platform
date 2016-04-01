@@ -17,6 +17,7 @@ from courseware.model_data import FieldDataCache
 from courseware.module_render import get_module_for_descriptor
 from courseware.views import get_current_child, save_positions_recursively_up
 from student.models import CourseEnrollment, User
+from microsite_configuration import microsite
 
 from xblock.fields import Scope
 from xblock.runtime import KeyValueStore
@@ -26,6 +27,32 @@ from xmodule.modulestore.exceptions import ItemNotFoundError
 from .serializers import CourseEnrollmentSerializer, UserSerializer
 from .. import errors
 from ..utils import mobile_view, mobile_course_access
+
+
+def is_org_allowed(course_overview):
+
+    # As seen in the dashboard
+    org_to_include = microsite.get_value('course_org_filter')
+
+    # Make any call to this function compatible
+    if org_to_include and isinstance(org_to_include, basestring):
+        org_to_include = set([org_to_include])
+
+    # Let's filter out any courses in an "org" that has been declared to be
+    # in a Microsite
+    orgs_to_exclude = []
+    if not org_to_include:
+        orgs_to_exclude = microsite.get_all_orgs()
+
+    if org_to_include and course_overview.location.org not in org_to_include:
+        return False
+
+    # Conversely, if we are not in a Microsite, then filter out any enrollments
+    # with courses attributed (by ORG) to Microsites.
+    elif course_overview.location.org in orgs_to_exclude:
+        return False
+
+    return True
 
 
 @mobile_view(is_user=True)
@@ -278,7 +305,8 @@ class UserCourseEnrollmentsList(generics.ListAPIView):
         return [
             enrollment for enrollment in enrollments
             if enrollment.course_overview and
-            is_mobile_available_for_user(self.request.user, enrollment.course_overview)
+            is_mobile_available_for_user(self.request.user, enrollment.course_overview) and
+            is_org_allowed(enrollment.course_overview)
         ]
 
 
