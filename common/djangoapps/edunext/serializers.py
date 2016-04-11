@@ -2,8 +2,38 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
+import logging
+
 from rest_framework import serializers
 from fields import CustomRelatedField
+
+
+log = logging.getLogger(__name__)
+
+
+class MetaSerializer(serializers.Serializer):
+    """Serializer for the blob information in the meta attibute, will return a
+    a default dict with empty values if the user does not have the information available
+
+    """
+    def to_representation(self, obj):
+        # Add all the possible fields
+        _fields = {
+            'personal_id': None,
+        }
+        try:
+            _data = json.loads(obj)
+            _output = {}
+            for key, value in _fields.iteritems():
+                _output[key] = _data.get(key, value)
+            return _output
+        except ValueError:
+            if obj:
+                log.warning("Could not parse metadata during data-api call. {meta}.".format(
+                    meta=obj,
+                ))
+            return _fields
 
 
 class UserSerializer(serializers.Serializer):
@@ -27,31 +57,27 @@ class UserSerializer(serializers.Serializer):
     # #################################################
 
     name = serializers.CharField(max_length=255, source="profile.name", read_only=True)
-    meta = serializers.CharField(source="profile.meta", read_only=True)  # JSON dictionary for future expansion
-    # courseware = models.CharField(blank=True, max_length=255, default='course.xml')  # TODO: what is this?
+    meta = MetaSerializer(source="profile.meta", read_only=True)
     language = serializers.CharField(max_length=255, source="profile.language", read_only=True)
     location = serializers.CharField(max_length=255, source="profile.location", read_only=True)
     year_of_birth = serializers.IntegerField(source="profile.year_of_birth", read_only=True)
-    # gender = models.CharField(
-    #     blank=True, null=True, max_length=6, db_index=True, choices=GENDER_CHOICES
-    # )
-    # level_of_education = models.CharField(  # TODO: what do we do with choices?
-    #     blank=True, null=True, max_length=6, db_index=True,
-    #     choices=LEVEL_OF_EDUCATION_CHOICES
-    # )
+
+    gender = serializers.CharField(source="profile.gender", read_only=True)
+    gender_display = serializers.CharField(source="profile.gender_display", read_only=True)
+
+    level_of_education = serializers.CharField(source="profile.level_of_education", read_only=True)
+    level_of_education_display = serializers.CharField(source="profile.level_of_education_display", read_only=True)
+
     mailing_address = serializers.CharField(source="profile.mailing_address", read_only=True)
     city = serializers.CharField(source="profile.city", read_only=True)
     country = serializers.CharField(source="profile.country", read_only=True)
     goals = serializers.CharField(source="profile.goals", read_only=True)
-    # allow_certificate = models.BooleanField(default=1)  # TODO: what is this?
     bio = serializers.CharField(source="profile.bio", max_length=3000, read_only=True)
 
-    # # Methods for convenience. TODO: should we add this?
+    ## TODO: should we add this?
     # has_profile_image
-    # age
-    # level_of_education_display
-    # gender_display
-    # get_meta
+    # courseware = models.CharField(blank=True, max_length=255, default='course.xml')  # TODO: what is this?
+    # allow_certificate = models.BooleanField(default=1)  # TODO: what is this?
 
     # ######################################################
     # From common.djangoapps.student.models.UserSignupSource
