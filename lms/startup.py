@@ -55,8 +55,8 @@ def run():
 
     add_mimetypes()
 
-    # Mako requires the directories to be added after the django setup.
-    microsite.enable_microsites(log)
+    if settings.FEATURES.get('USE_MICROSITES', False):
+        microsite.enable_microsites(log)
 
     if settings.FEATURES.get('USE_CUSTOM_THEME', False):
         enable_stanford_theme()
