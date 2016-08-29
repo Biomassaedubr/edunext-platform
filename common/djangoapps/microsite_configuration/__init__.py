@@ -7,10 +7,14 @@ from django.conf import settings
 with:
 
 from microsite_configuration import settings
+or
+from openedx.conf import settings
+
 """
 from django.conf import settings as base_settings
 
 from microsite_configuration import microsite
+from .templatetags.microsite import page_title_breadcrumbs
 
 
 class MicrositeAwareSettings(object):
@@ -23,9 +27,10 @@ class MicrositeAwareSettings(object):
     def __getattr__(self, name):
         try:
             if isinstance(microsite.get_value(name), dict):
-                return microsite.get_dict(name, getattr(base_settings, name))
-            return microsite.get_value(name, getattr(base_settings, name))
+                return microsite.get_dict(name, base_settings.__getattr__(name))
+            return microsite.get_value(name, base_settings.__getattr__(name))
         except KeyError:
-            return getattr(base_settings, name)
+            base_settings.__getattr__(name)
+
 
 settings = MicrositeAwareSettings()  # pylint: disable=invalid-name
