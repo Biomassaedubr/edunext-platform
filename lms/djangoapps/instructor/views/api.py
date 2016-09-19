@@ -3173,7 +3173,7 @@ def generate_bulk_certificate_exceptions(request, course_id):  # pylint: disable
 @transaction.non_atomic_requests
 @ensure_csrf_cookie
 @cache_control(no_cache=True, no_store=True, must_revalidate=True)
-@require_global_staff
+@require_level('instructor')
 @require_http_methods(['POST', 'DELETE'])
 def certificate_invalidation_view(request, course_id):
     """
@@ -3207,7 +3207,6 @@ def certificate_invalidation_view(request, course_id):
             return JsonResponse({'message': error.message}, status=400)
 
         return JsonResponse({}, status=204)
-
 
 def invalidate_certificate(request, generated_certificate, certificate_invalidation_data):
     """
