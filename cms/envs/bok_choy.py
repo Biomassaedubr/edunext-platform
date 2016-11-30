@@ -123,6 +123,11 @@ MOCK_SEARCH_BACKING_FILE = (
 # this secret key should be the same as lms/envs/bok_choy.py's
 SECRET_KEY = "very_secret_bok_choy_key"
 
+# Testing if the PASSWORD_HASHERS makesa difference on testing time
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
+
 #####################################################################
 # Lastly, see if the developer has any local overrides.
 try:

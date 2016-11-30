@@ -206,3 +206,8 @@ PIPELINE_ENABLED = False
 # We want to make sure that any new migrations are run
 # see https://groups.google.com/forum/#!msg/django-developers/PWPj3etj3-U/kCl6pMsQYYoJ
 MIGRATION_MODULES = {}
+
+# Testing if the PASSWORD_HASHERS makesa difference on testing time
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)

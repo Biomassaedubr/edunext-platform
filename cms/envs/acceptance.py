@@ -140,3 +140,8 @@ SECRET_KEY = uuid.uuid4().hex
 ############################### PIPELINE #######################################
 
 PIPELINE_ENABLED = False
+
+# Testing if the PASSWORD_HASHERS makesa difference on testing time
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)

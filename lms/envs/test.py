@@ -608,3 +608,8 @@ COMPREHENSIVE_THEME_DIRS = [REPO_ROOT / "themes", REPO_ROOT / "common/test"]
 ######### custom eduNEXT features #########
 FEATURES['USE_MICROSITE_AVAILABLE_SCREEN'] = False
 FEATURES['USE_REDIRECTION_MIDDLEWARE'] = False
+
+# Testing if the PASSWORD_HASHERS makesa difference on testing time
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
