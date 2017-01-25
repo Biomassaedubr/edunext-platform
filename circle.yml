@@ -12,6 +12,7 @@ dependencies:
     - sudo apt-get update; sudo apt-get install libxml2-dev libxmlsec1-dev swig -y
   override:
     - npm install
+    - npm install -g karma-cli
 
     - pip install setuptools
     - pip install --exists-action w -r requirements/edx/paver.txt
