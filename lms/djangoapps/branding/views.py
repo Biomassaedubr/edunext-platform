@@ -4,6 +4,7 @@ import urllib
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
+from openedx.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
