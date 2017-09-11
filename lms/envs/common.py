@@ -228,7 +228,6 @@ FEATURES = {
     # Turn on/off Microsites feature
     'USE_MICROSITES': False,
     'USE_MICROSITE_AVAILABLE_SCREEN': True,
-
     'ENABLE_MULTIPART_EMAIL': False,
 
     # Turn on third-party auth. Disabled for now because full implementations are not yet available. Remember to syncdb
