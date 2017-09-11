@@ -1129,7 +1129,15 @@ MAX_FAILED_LOGIN_ATTEMPTS_LOCKOUT_PERIOD_SECS = 15 * 60
 
 OPTIONAL_APPS = (
     'mentoring',
+
+    # Supported and usable xblocks from https://openedx.atlassian.net/wiki/display/COMM/XBlocks+Directory
+    'activetable',
+    'done',
+    'image_explorer',
     'problem_builder',
+    'schoolyourself',
+    'vectordraw',
+
     'edx_sga',
 
     # edx-ora2
@@ -1148,6 +1156,14 @@ OPTIONAL_APPS = (
 
     # Enterprise App (http://github.com/edx/edx-enterprise)
     'enterprise',
+
+    # Solution's drag and drop
+    'drag-and-drop-v2',
+
+    # edunext xblocks
+    'brightcove-video',
+    'flow-control',
+    'ooyala-player',
 )
 
 
