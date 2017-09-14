@@ -490,8 +490,7 @@ def send_mail_to_student(student, param_dict, language=None):
         )
 
         send_mail(subject, message, from_address, [student], fail_silently=False,
-            html_message=html_message)
-
+                  html_message=html_message)
 
 
 def render_message_to_string(subject_template, message_template, param_dict, language=None):

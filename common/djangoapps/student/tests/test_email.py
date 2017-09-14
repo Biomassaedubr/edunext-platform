@@ -3,7 +3,7 @@ import json
 import unittest
 
 import mock
-from django.conf import settings
+from openedx.conf import settings
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.urlresolvers import reverse

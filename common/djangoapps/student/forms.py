@@ -96,8 +96,7 @@ class PasswordResetFormNoActive(PasswordResetForm):
             subject = subject.replace('\n', '')
             email = loader.render_to_string(email_template_name, context)
             send_mail(subject, email, from_email, [user.email],
-                html_message=get_html_message(context, base=email_template_name))
-
+                      html_message=get_html_message(context, base=email_template_name))
 
 
 class TrueCheckbox(widgets.CheckboxInput):

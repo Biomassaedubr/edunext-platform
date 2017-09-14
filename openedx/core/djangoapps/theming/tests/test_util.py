@@ -10,7 +10,7 @@ import re
 
 from mock import patch
 
-from django.conf import settings
+from openedx.conf import settings
 from django.contrib.sites.models import Site
 
 import edxmako
