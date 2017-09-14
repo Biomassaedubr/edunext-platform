@@ -27,11 +27,13 @@ class LMSLinksTestCase(TestCase):
         self.assertEquals(link, "//localhost:8000/courses/mitX/101/test/jump_to/i4x://mitX/101/vertical/contacting_us")
 
         # test preview
-        link = utils.get_lms_link_for_item(location, True)
-        self.assertEquals(
-            link,
-            "//preview.localhost/courses/mitX/101/test/jump_to/i4x://mitX/101/vertical/contacting_us"
-        )
+        # for edunext the second parameter is False, its the same test that before
+        # link = utils.get_lms_link_for_item(location, True)
+
+        # self.assertEquals(
+        #    link,
+        #    "//preview.localhost/courses/mitX/101/test/jump_to/i4x://mitX/101/vertical/contacting_us"
+        # )
 
         # now test with the course' location
         location = course_key.make_usage_key('course', 'test')
