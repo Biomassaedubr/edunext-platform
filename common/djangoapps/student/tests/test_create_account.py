@@ -489,7 +489,11 @@ class TestCreateAccountValidation(TestCase):
 
         # Invalid
         params["username"] = "invalid username"
-        assert_username_error(str(USERNAME_INVALID_CHARS_ASCII))
+        # Edunext 07.03.2017
+
+        # Fixing test when comparing failure messages
+         assert_username_error("Usernames must contain only letters, numbers, underscores (_), and "
+                               "hyphens (-).")
 
     def test_email(self):
         params = dict(self.minimal_params)
